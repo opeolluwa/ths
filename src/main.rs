@@ -1,4 +1,6 @@
-// use billboard::Billboard;
+extern crate dialoguer;
+use dialoguer::{theme::ColorfulTheme, Checkboxes};
+
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
@@ -10,7 +12,7 @@ use std::path::PathBuf;
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 
-struct ThunderStorm {
+struct ThunderArguments {
     //path to create the application
     #[clap(short, long, value_parser)]
     path: String,
@@ -21,24 +23,17 @@ struct ThunderStorm {
 }
 
 fn main() {
-    //display the banner 
+    //display the banner
     let custom_figlet_font = FIGfont::from_file("resources/5lineoblique.flf").unwrap();
     let figure = custom_figlet_font.convert("Thunderstorm");
     println!("{}", figure.unwrap().yellow().bold());
 
     //parse the arguments
-    let args = ThunderStorm::parse();
+    let args = ThunderArguments::parse();
     let lang = args.lang;
     let mut path = args.path;
     println!("lang {} path {}", lang, path);
 
-    // dialoguer::Confirm::new().with_prompt("Do you want to continue?");
-    /*
-     if the application directory is selected as the current check if its's empty
-     to do this, first get the absolute path the check if the path is empty,
-     if not empty ask the user if he wants to proceed
-     if the path is empty, create the directory
-    */
     if path == "." || path == "./" {
         path = env::current_dir().unwrap().to_str().unwrap().to_string();
         let is_empty = PathBuf::from(path.clone())
@@ -70,4 +65,22 @@ fn main() {
 
     // fs::create_dir(path.clone());
     // println!(" path {}", path);
+}
+
+struct ThunderStorm {
+    name: String,
+    lang: String,
+    path: String,
+    dirs: Vec<String>,
+}
+
+impl ThunderStorm {
+    fn new(name: String, lang: String, path: String, dirs: Vec<String>) -> ThunderStorm {
+        ThunderStorm {
+            name: name,
+            lang: lang,
+            path: path,
+            dirs: dirs,
+        }
+    }
 }
