@@ -1,6 +1,6 @@
 // mod dirs
 extern crate dialoguer;
-use dialoguer::{theme::CustomPromptCharacterTheme, Confirmation, Input};
+use dialoguer::{theme::CustomPromptCharacterTheme, Confirmation, Input, Select};
 
 mod dirs {
     use dialoguer::{theme::ColorfulTheme, Checkboxes};
@@ -57,17 +57,17 @@ pub struct ThunderStorm {
 impl ThunderStorm {
     pub fn new(lang: String, path: String) -> ThunderStorm {
         //compute the application name
-        let theme = CustomPromptCharacterTheme::new('>');
-        let application_name: String = Input::with_theme(&theme)
-            .with_prompt("Provide the name of the application ")
-            .interact()
-            .unwrap();
-
-        //compute the directories to create
-        let dirs = dirs::create();
+        let application_name = Inquirer::prompt("Application name ".to_string());
+        let dirs = dirs::create(); //compute the directories to create
 
         //inquire the package manager, use of env and typescript
-        let package_manager = Inquirer::select("Which package manager do you use?".to_string(), ["npm", "yarn"]).unwrap();
+        let known_package_managers: Vec<String> = vec!["npm".to_string(), "yarn".to_string()];
+        let package_manager = Inquirer::select(
+            "Which package manager do you use?".to_string(),
+            known_package_managers,
+        );
+
+        //inquire the use of environment
         let use_env =
             Inquirer::confirm("Do you want to use the environment variables?".to_string());
         // let use_git = Inquirer::confirm("Do you want to use git?".to_string());
@@ -102,13 +102,14 @@ impl Inquirer {
         answer
     }
 
-    fn select_option(query: String, options: Vec<String>) -> String {
-        let answer = Select::with_theme(&ColorfulTheme::default())
+    fn select(query: String, options: Vec<String>) -> String {
+        let theme = CustomPromptCharacterTheme::new('>');
+        let answer = Select::with_theme(&theme)
             .with_prompt(&query)
             .default(0)
             .items(&options[..])
             .interact()
             .unwrap();
-        answer
+        answer.to_string()
     }
 }
