@@ -1,47 +1,11 @@
-// mod dirs
-extern crate dialoguer;
-use dialoguer::{theme::CustomPromptCharacterTheme, Confirmation, Input, Select};
+//load in the inquirer library
+#[path = "inquirer.rs"]
+mod inquirer;
+use inquirer as Commander;
+use Commander::Inquirer;
 
-mod dirs {
-    use dialoguer::{theme::ColorfulTheme, Checkboxes};
-    //prompt user for folders to create, return array of folder names
-    pub fn create() -> Vec<String> {
-        const CHECKBOXES: &[&str; 11] = &[
-            "config",
-            "controller",
-            "migrations",
-            "files",
-            "middleware",
-            "models",
-            "lib",
-            "routes",
-            "templates",
-            "utils",
-            "views",
-        ];
 
-        let defaults = &[false; CHECKBOXES.len()];
-        let selections = Checkboxes::with_theme(&ColorfulTheme::default())
-            .with_prompt("Please select the desired folders to create")
-            .items(&CHECKBOXES[..])
-            .defaults(&defaults[..])
-            .interact()
-            .unwrap();
 
-        if selections.is_empty() {
-            println!("You did not select anything :(");
-            return vec![];
-        }
-        //return the array of folder names
-        // selections
-        let mut dirs = vec![];
-        for i in selections {
-            dirs.push(CHECKBOXES[i].to_string());
-        }
-        //return the directory names
-        dirs
-    }
-}
 #[derive(Debug)]
 pub struct ThunderStorm {
     pub application_name: String,
@@ -82,34 +46,5 @@ impl ThunderStorm {
             package_manager,
             use_env,
         }
-    }
-}
-
-//a function that inquires the user for the language to use
-struct Inquirer {}
-impl Inquirer {
-    fn prompt(query: String) -> String {
-        let theme = CustomPromptCharacterTheme::new('>');
-        let answer: String = Input::with_theme(&theme)
-            .with_prompt(&query)
-            .interact()
-            .unwrap();
-        answer
-    }
-
-    fn confirm(query: String) -> bool {
-        let answer: bool = Confirmation::new().with_text(&query).interact().unwrap();
-        answer
-    }
-
-    fn select(query: String, options: Vec<String>) -> String {
-        let theme = CustomPromptCharacterTheme::new('>');
-        let answer = Select::with_theme(&theme)
-            .with_prompt(&query)
-            .default(0)
-            .items(&options[..])
-            .interact()
-            .unwrap();
-        answer.to_string()
     }
 }
