@@ -1,5 +1,8 @@
-mod sample;
-mod dirs;
+//local module
+mod init;
+use init as Init;
+use Init::ThunderStorm;
+
 
 use clap::Parser;
 use figlet_rs::FIGfont;
@@ -7,29 +10,16 @@ use owo_colors::OwoColorize;
 use std::env;
 use std::path::PathBuf;
 
-// use std::fs;
-// use dialoguer::Confirm;
-
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
-
 struct ThunderArguments {
-    //path to create the application
     #[clap(short, long, value_parser)]
-    path: String,
-
-    //programming language to use
+    path: String, //path to create the application
     #[clap(short, long, value_parser, default_value = "javascript")]
-    lang: String,
+    lang: String, //programming language to use
 }
 
 fn main() {
-
-    let tt = sample::new("sample name".to_string());
-    println!("{}", tt);
-
-    let directory = dirs::create();
-    println!("{:?}", directory);
     //display the banner
     let custom_figlet_font = FIGfont::from_file("resources/5lineoblique.flf").unwrap();
     let figure = custom_figlet_font.convert("Thunderstorm");
@@ -39,8 +29,7 @@ fn main() {
     let args = ThunderArguments::parse();
     let lang = args.lang;
     let mut path = args.path;
-    println!("lang {} path {}", lang, path);
-
+   
     if path == "." || path == "./" {
         path = env::current_dir().unwrap().to_str().unwrap().to_string();
         let is_empty = PathBuf::from(path.clone())
@@ -58,8 +47,9 @@ fn main() {
                 return;
             }
         }
-        //else
-        println!("Creating application in {}", path);
+      
+        let application = ThunderStorm::new(lang.clone(), path.clone());
+        println!("{:?}", application);
     } else if path.ends_with("/") {
         let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
         path = path.clone().trim_end_matches("/").to_string();
