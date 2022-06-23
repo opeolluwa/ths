@@ -2,7 +2,11 @@
 name = "app"
 version = "0.1.0"
 edition = "2021"
+authors = ["Adeoye Adefemi <adefemiadeoye@yahoo.com>"]
+description = "Command Line Application for scaffolding Node.js network applications."
+repository = "https://github.com/opeolluwa/thunderstorm.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "3.2.6", features = ["derive"] }

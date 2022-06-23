@@ -1,7 +1,40 @@
-use std::env;
-use std::fs;
+// use std::env;
+// use std::fs;
+use clap::Parser;
+
+enum ProgrammingLanguage{
+    JavaScript="javascript",
+}
+/// Simple program to greet a person
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+
+
+struct ThunderStorm {
+    /// name of the application
+    #[clap(short, long, value_parser)]
+    name: String,
+
+    //path to create the application
+    #[clap(short, long, value_parser)]
+    path: String,
+
+    //programming language to use
+    #[clap(short, long, value_parser)]
+    lang: String,
+
+    /// Number of times to greet
+    #[clap(short, long, value_parser, default_value_t = 1)]
+    count: u8,
+}
 
 fn main() {
+    let args = ThunderStorm::parse();
+
+    for _ in 0..args.count {
+        println!("Hello {}!", args.name)
+    }
+    /*
     ///the path of the application to be created is passed as an argument
     let mut application_path: String = env::args().nth(2).unwrap();
     application_path = application_path.to_string();
@@ -15,7 +48,7 @@ fn main() {
             println!("Exiting...");
             return;
         }
-        
+
     } else if application_path.ends_with("/") {
         application_path = application_path.clone().trim_end_matches("/").to_string();
     } else {
@@ -23,4 +56,5 @@ fn main() {
     }
     fs::create_dir(application_path.clone());
     println!(" path {}", application_path);
+    */
 }
