@@ -1,15 +1,12 @@
-use std::env;
-use std::fs;
 use clap::Parser;
+use std::env;
+// use std::fs;
+use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 
 struct ThunderStorm {
-  /*   /// name of the application
-    #[clap(short, long, value_parser)]
-    name: String,
- */
     //path to create the application
     #[clap(short, long, value_parser)]
     path: String,
@@ -21,30 +18,46 @@ struct ThunderStorm {
 
 fn main() {
     let args = ThunderStorm::parse();
-
-    println!("{:?}", args);
+    let lang = args.lang;
+    let mut path = args.path;
+    println!("lang {} path {}", lang, path);
 
     /*
-    ///the path of the application to be created is passed as an argument
-    let mut application_path: String = env::args().nth(2).unwrap();
-    application_path = application_path.to_string();
-
-    if application_path == "." || application_path == "./" {
-        application_path = env::current_dir().unwrap().to_str().unwrap().to_string();
-        println!(" application will be created in current path. Proceed anyway? Y/n  {}", application_path);
-        let mut input = String::new();
-        std::io::stdin().read_line(&mut input).unwrap();
-        if input.trim() == "n" {
-            println!("Exiting...");
-            return;
-        }
-
-    } else if application_path.ends_with("/") {
-        application_path = application_path.clone().trim_end_matches("/").to_string();
-    } else {
-        application_path = application_path.clone();
-    }
-    fs::create_dir(application_path.clone());
-    println!(" path {}", application_path);
+     if the application directory is selected as the current check if its's empty
+     to do this, first get the absolute path the check if the path is empty,
+     if not empty ask the user if he wants to proceed
+     if the path is empty, create the directory
     */
+    if path == "." || path == "./" {
+        path = env::current_dir().unwrap().to_str().unwrap().to_string();
+        let is_empty = PathBuf::from(path.clone())
+            .read_dir()
+            .map(|mut i| i.next().is_none())
+            .unwrap_or(false);
+
+        if !is_empty {
+            //prompt the user if he wants to proceed then receive and parse user input
+            println!("The selected directory is not empty. Proceed anyway? y/N.");
+            let mut input = String::new();
+            std::io::stdin().read_line(&mut input).unwrap();
+            if input.trim() == "n" || input.trim() == "N" {
+                println!("Exiting...");
+                return;
+            }
+        }
+        //else
+        println!("Creating application in {}", path);
+    } else if path.ends_with("/") {
+        let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
+        path = path.clone().trim_end_matches("/").to_string();
+        println!("Creating application in {}", current_path.clone() + &path);
+
+    } else {
+        // path = path.clone();
+        // path = PathBuf::from(path.clone().to_string().unwrap())
+        println!("Creating application in {}", path);
+    }
+
+    // fs::create_dir(path.clone());
+    // println!(" path {}", path);
 }

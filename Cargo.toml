@@ -10,3 +10,4 @@ repository = "https://github.com/opeolluwa/thunderstorm.rs"
 
 [dependencies]
 clap = { version = "3.2.6", features = ["derive"] }
+dialoguer = { version = "0.1.0" }
