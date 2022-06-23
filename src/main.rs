@@ -2,6 +2,7 @@ use clap::Parser;
 use std::env;
 // use std::fs;
 use std::path::PathBuf;
+// use dialoguer::Confirm;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -16,12 +17,14 @@ struct ThunderStorm {
     lang: String,
 }
 
-fn main() {
+fn main()  {
     let args = ThunderStorm::parse();
     let lang = args.lang;
     let mut path = args.path;
     println!("lang {} path {}", lang, path);
 
+
+    // dialoguer::Confirm::new().with_prompt("Do you want to continue?");
     /*
      if the application directory is selected as the current check if its's empty
      to do this, first get the absolute path the check if the path is empty,
