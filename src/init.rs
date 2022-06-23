@@ -1,12 +1,12 @@
 pub struct ThunderStorm {
-    name: String,
-    lang: String,
-    path: String,
-    dirs: Vec<String>,
+    pub name: String,
+    pub lang: String,
+    pub path: String,
+    pub dirs: Vec<String>,
 }
 
 impl ThunderStorm {
-   pub fn new(name: String, lang: String, path: String, dirs: Vec<String>) -> ThunderStorm {
+    pub fn new(name: String, lang: String, path: String, dirs: Vec<String>) -> ThunderStorm {
         ThunderStorm {
             name: name,
             lang: lang,

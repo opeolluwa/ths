@@ -2,40 +2,44 @@ extern crate dialoguer;
 use dialoguer::{theme::ColorfulTheme, Checkboxes};
 
 //prompt user for folders to create, return array of folder names
-pub fun create_directories() -> Vec<String>{
-  const checkboxes: &[&str; 11] = &[
-    "config",
-    "controller",
-    "migrations",
-    "files",
-    "middleware",
-    "models",
-    "lib",
-    "routes",
-    "templates",
-    "utils",
-    "views",
-];
+pub fn create() -> Vec<String> {
+    const CHECKBOXES: &[&str; 11] = &[
+        "config",
+        "controller",
+        "migrations",
+        "files",
+        "middleware",
+        "models",
+        "lib",
+        "routes",
+        "templates",
+        "utils",
+        "views",
+    ];
 
-let defaults = &[false; checkboxes.len()];
-let selections = Checkboxes::with_theme(&ColorfulTheme::default())
-    .with_prompt("Pick your food")
-    .items(&checkboxes[..])
-    .defaults(&defaults[..])
-    .interact()
-    .unwrap();
+    let defaults = &[false; CHECKBOXES.len()];
+    let selections = Checkboxes::with_theme(&ColorfulTheme::default())
+        .with_prompt("Please select the desired folders to create")
+        .items(&CHECKBOXES[..])
+        .defaults(&defaults[..])
+        .interact()
+        .unwrap();
 
-if selections.is_empty() {
-    println!("You did not select anything :(");
-    return;
-} 
-//return the array of folder names
-selections.iter().map(|i| checkboxes[*i].to_string()).collect()
+    if selections.is_empty() {
+        println!("You did not select anything :(");
+        return vec![];
+    }
+    //return the array of folder names
+    // selections
+    let mut dirs = vec![];
+    for i in selections {
+        dirs.push(CHECKBOXES[i].to_string());
+    }
+    dirs
 }
 
-
 /* else {
-    
+
     println!("You selected these things:");
     for selection in selections {
         println!("  {}", checkboxes[selection]);

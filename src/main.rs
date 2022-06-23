@@ -1,11 +1,12 @@
-extern crate dialoguer;
-use dialoguer::{theme::ColorfulTheme, Checkboxes};
+mod sample;
+mod dirs;
 
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
 use std::env;
 use std::path::PathBuf;
+
 // use std::fs;
 // use dialoguer::Confirm;
 
@@ -23,6 +24,12 @@ struct ThunderArguments {
 }
 
 fn main() {
+
+    let tt = sample::new("sample name".to_string());
+    println!("{}", tt);
+
+    let directory = dirs::create();
+    println!("{:?}", directory);
     //display the banner
     let custom_figlet_font = FIGfont::from_file("resources/5lineoblique.flf").unwrap();
     let figure = custom_figlet_font.convert("Thunderstorm");
@@ -65,22 +72,4 @@ fn main() {
 
     // fs::create_dir(path.clone());
     // println!(" path {}", path);
-}
-
-struct ThunderStorm {
-    name: String,
-    lang: String,
-    path: String,
-    dirs: Vec<String>,
-}
-
-impl ThunderStorm {
-    fn new(name: String, lang: String, path: String, dirs: Vec<String>) -> ThunderStorm {
-        ThunderStorm {
-            name: name,
-            lang: lang,
-            path: path,
-            dirs: dirs,
-        }
-    }
 }
