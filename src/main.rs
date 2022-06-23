@@ -1,7 +1,10 @@
+// use billboard::Billboard;
 use clap::Parser;
+use figlet_rs::FIGfont;
+use owo_colors::OwoColorize;
 use std::env;
-// use std::fs;
 use std::path::PathBuf;
+// use std::fs;
 // use dialoguer::Confirm;
 
 #[derive(Parser, Debug)]
@@ -17,12 +20,17 @@ struct ThunderStorm {
     lang: String,
 }
 
-fn main()  {
+fn main() {
+    //display the banner 
+    let custom_figlet_font = FIGfont::from_file("resources/5lineoblique.flf").unwrap();
+    let figure = custom_figlet_font.convert("Thunderstorm");
+    println!("{}", figure.unwrap().yellow().bold());
+
+    //parse the arguments
     let args = ThunderStorm::parse();
     let lang = args.lang;
     let mut path = args.path;
     println!("lang {} path {}", lang, path);
-
 
     // dialoguer::Confirm::new().with_prompt("Do you want to continue?");
     /*
@@ -54,7 +62,6 @@ fn main()  {
         let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
         path = path.clone().trim_end_matches("/").to_string();
         println!("Creating application in {}", current_path.clone() + &path);
-
     } else {
         // path = path.clone();
         // path = PathBuf::from(path.clone().to_string().unwrap())
