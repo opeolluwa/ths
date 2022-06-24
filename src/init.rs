@@ -3,11 +3,9 @@
 mod inquirer;
 use inquirer as Commander;
 
-
-#[path="dirs.rs"]
+#[path = "dirs.rs"]
 mod dirs;
 use dirs as Dirs;
-
 
 #[derive(Debug)]
 pub struct ThunderStorm {
@@ -17,8 +15,9 @@ pub struct ThunderStorm {
     pub dirs: Vec<String>,
     pub package_manager: String,
     pub use_env: bool,
-    // pub use_git: bool,
-    // pub use_typescript: bool,
+    pub use_git: bool,
+    pub use_typescript: bool,
+    pub test_suit: String,
 }
 
 impl ThunderStorm {
@@ -37,17 +36,35 @@ impl ThunderStorm {
         //inquire the use of environment
         let use_env =
             Commander::Confirm::new("Do you want to use the environment variables?".to_string());
-        // let use_git = Commander::confirm("Do you want to use git?".to_string());
-        // let use_typescript = Commander::confirm("Do you want to use typescript?".to_string());
+        let use_git =
+            Commander::Confirm::new("Do you want to initialize as a git repository?".to_string());
+        let use_typescript = Commander::Confirm::new("Do you want to use typescript?".to_string());
+        let query_test_suit = Commander::Confirm::new("Do you want to setup test suit".to_string());
+        let mut test_suit = "".to_string();
+        
+        if query_test_suit {
+            test_suit = Commander::Prompt::new(
+                "Input a space delimited names of testing packages to use".to_string(),
+            );
+        }
+        //if the user want to setup test suit, prompt for test suit to install
+        /*  if let include_test_suit = true {
+            let test_suit = Commander::Prompt::new(
+                "Input a space delimited names of testing packages to use".to_string(),
+            );
+        } */
 
         //return the ThunderStorm object
         ThunderStorm {
+            dirs,
             lang,
             path,
             application_name,
-            dirs,
             package_manager,
             use_env,
+            use_git,
+            use_typescript,
+            test_suit,
         }
     }
 }
