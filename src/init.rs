@@ -36,7 +36,7 @@ impl ThunderStorm {
         let dirs = Dirs::create(); //compute the directories to create
 
         //inquire the package manager, use of env and typescript
-        let known_package_managers: Vec<String> = vec!["npm".to_string(), "yarn".to_string()];
+        let known_package_managers: Vec<String> = vec!["npm".to_string(), "yarn".to_string(), "pnpm".to_string()];
         let package_manager = Commander::Select::new(
             "Which package manager do you use?".to_string(),
             known_package_managers,
