@@ -1,0 +1,9 @@
+let include_readme = Commander::Confirm::new("Do initialize project with ?".to_string());
+let include_license = Commander::Confirm::new("Do initialize project with license?".to_string());
+let include_changelog = Commander::Confirm::new("Do initialize project with changelog?".to_string());
+let include_package_json = Commander::Confirm::new("Do initialize project with package.json ?".to_string());
+let include_gitignore = Commander::Confirm::new("Do initialize project with gitignore?".to_string());
+let include_tsconfig = Commander::Confirm::new("Do initialize project with tsconfig?".to_string());
+let include_tslint = Commander::Confirm::new("Do initialize project with tslint?".to_string());
+let include_eslint = Commander::Confirm::new("Do initialize project with eslint?".to_string());
+let include_prettier = Commander::Confirm::new("Do initialize project with prettier?".to_string());

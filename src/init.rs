@@ -18,6 +18,15 @@ pub struct ThunderStorm {
     pub use_git: bool,
     pub use_typescript: bool,
     pub test_suit: String,
+    pub include_readme: bool,
+    pub include_license: bool,
+    pub include_changelog: bool,
+    pub include_package_json: bool,
+    pub include_gitignore: bool,
+    pub include_tsconfig: bool,
+    pub include_tslint: bool,
+    pub include_eslint: bool,
+    pub include_prettier: bool,
 }
 
 impl ThunderStorm {
@@ -33,7 +42,7 @@ impl ThunderStorm {
             known_package_managers,
         );
 
-        //inquire the use of environment
+        //inquire the user configuration
         let use_env =
             Commander::Confirm::new("Do you want to use the environment variables?".to_string());
         let use_git =
@@ -41,18 +50,28 @@ impl ThunderStorm {
         let use_typescript = Commander::Confirm::new("Do you want to use typescript?".to_string());
         let query_test_suit = Commander::Confirm::new("Do you want to setup test suit".to_string());
         let mut test_suit = "".to_string();
-        
         if query_test_suit {
             test_suit = Commander::Prompt::new(
                 "Input a space delimited names of testing packages to use".to_string(),
             );
         }
-        //if the user want to setup test suit, prompt for test suit to install
-        /*  if let include_test_suit = true {
-            let test_suit = Commander::Prompt::new(
-                "Input a space delimited names of testing packages to use".to_string(),
-            );
-        } */
+        let include_readme = Commander::Confirm::new("Do initialize project with ?".to_string());
+        let include_license =
+            Commander::Confirm::new("Do initialize project with license?".to_string());
+        let include_changelog =
+            Commander::Confirm::new("Do initialize project with changelog?".to_string());
+        let include_package_json =
+            Commander::Confirm::new("Do initialize project with package.json ?".to_string());
+        let include_gitignore =
+            Commander::Confirm::new("Do initialize project with gitignore?".to_string());
+        let include_tsconfig =
+            Commander::Confirm::new("Do initialize project with tsconfig?".to_string());
+        let include_tslint =
+            Commander::Confirm::new("Do initialize project with tslint?".to_string());
+        let include_eslint =
+            Commander::Confirm::new("Do initialize project with eslint?".to_string());
+        let include_prettier =
+            Commander::Confirm::new("Do initialize project with prettier?".to_string());
 
         //return the ThunderStorm object
         ThunderStorm {
@@ -65,6 +84,15 @@ impl ThunderStorm {
             use_git,
             use_typescript,
             test_suit,
+            include_readme,
+            include_license,
+            include_changelog,
+            include_package_json,
+            include_gitignore,
+            include_tsconfig,
+            include_tslint,
+            include_eslint,
+            include_prettier,
         }
     }
 }
