@@ -105,6 +105,7 @@ impl Application {
  * @param: path: String, the path to the directory to copy the file content from
  * @return: String, the contents of the file
  */
+
 fn fetch_template(base_path: String, file_name: String, content_path: String) /* -> std::fs::File */
 {
     //open the file to read the contents
@@ -118,10 +119,10 @@ fn fetch_template(base_path: String, file_name: String, content_path: String) /*
     file.write_all(content.as_bytes()).unwrap();
 }
 
-#[warn(dead_code)]
-fn read_file(file_name: String) -> String {
-    let mut file = fs::File::open(file_name).unwrap();
-    let mut contents = String::new();
-    file.read_to_string(&mut contents).unwrap();
-    contents
-}
+// #[warn(dead_code)]
+// fn read_file(file_name: String) -> String {
+//     let mut file = fs::File::open(file_name).unwrap();
+//     let mut contents = String::new();
+//     file.read_to_string(&mut contents).unwrap();
+//     contents
+// }

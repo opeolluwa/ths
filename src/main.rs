@@ -25,7 +25,7 @@ struct ThunderArguments {
 
 fn main() {
     //display the banner
-    let custom_figlet_font = FIGfont::from_file("resources/5lineoblique.flf").unwrap();
+    let custom_figlet_font = FIGfont::standand().unwrap();/* FIGfont::from_file("resources/5lineoblique.flf").unwrap(); */
     let figure = custom_figlet_font.convert("Thunderstorm");
     println!("{}", figure.unwrap().yellow().bold());
 
