@@ -68,6 +68,14 @@ impl Application {
             );
         }
 
+        //if include package.json is an option
+        if app.include_package_json {
+            fetch_template(
+                app.path.clone(),
+                "package.json".to_string(),
+                "resources/package.json".to_string(),
+            );
+        }
 
         /* //if include test suit is an option
         if app.test_suit != "" {
