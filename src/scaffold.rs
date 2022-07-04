@@ -33,6 +33,50 @@ impl Application {
                 "resources/tsconfig.json".to_string(),
             );
         }
+
+        //if readme is an option
+        if app.include_readme {
+            fetch_template(
+                app.path.clone(),
+                "README.md".to_string(),
+                "resources/README.md".to_string(),
+            );
+        }
+
+        //if gitignore is an option
+        if app.use_git {
+            fetch_template(
+                app.path.clone(),
+                ".gitignore".to_string(),
+                "resources/.gitignore".to_string(),
+            );
+        }
+
+        //if env is an option
+        if app.use_env {
+            fetch_template(
+                app.path.clone(),
+                ".env".to_string(),
+                "resources/.env".to_string(),
+            );
+
+            //if env is an option, create a .env.example file
+            fetch_template(
+                app.path.clone(),
+                ".env.example".to_string(),
+                "resources/.env.example".to_string(),
+            );
+        }
+
+
+        /* //if include test suit is an option
+        if app.test_suit != "" {
+            //loop through the test suit and create the required folders in the project directory
+            for folder in app.test_suit.split_whitespace() {
+                //loop through the test suit and create the required folders in the project directory
+                fs::create_dir(format!("{}/test/{}", app.path.clone(), folder)).unwrap();
+            }
+        } */
     }
 
     //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
