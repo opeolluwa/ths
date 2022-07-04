@@ -6,7 +6,7 @@ authors = ["Adeoye Adefemi <adefemiadeoye@yahoo.com>"]
 description = "Command Line Application for scaffolding Node.js network applications."
 repository = "https://github.com/opeolluwa/thunderstorm.rs"
 license = "Apache-2.0"
-keywords = ["cli", "node.js", "network", "backend", "typescript"]
+keywords = ["cli", "node", "network", "backend", "typescript", "javascript"]
 categories = ["command-line-utilities"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
