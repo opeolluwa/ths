@@ -5,8 +5,8 @@
 use crate::ThunderStorm;
 use std::env;
 use std::fs;
-use std::io::Write;
 use std::io::Read;
+use std::io::Write;
 
 // use std::path::PathBuf;
 
@@ -27,112 +27,12 @@ impl Application {
         //loop through the thunderstorm instance and create the required files in the project directory
         //if typescript is an option
         if app.lang == "typescript" || app.use_typescript {
-            //create tsconfig.json
-            let tsconfig = format!("{}/tsconfig.json", app.path.clone());
-            let tsconfig_content = r#"{
-                "compilerOptions": {
-                    "target": "es5",
-                    "module": "commonjs",
-                    "moduleResolution": "node",
-                    "sourceMap": true,
-                    "declaration": true,
-                    "emitDecoratorMetadata": true,
-                    "experimentalDecorators": true,
-                    "removeComments": false,
-                    "noImplicitAny": false,
-                    "strictNullChecks": true,
-                    "outDir": "./dist",
-                    "rootDir": "./src",
-                    "baseUrl": "./src",
-                    "paths": {
-                        "*": [
-                            "node_modules/*"
-                        ]
-                    }
-                },
-                "include": [
-                    "src/**/*"
-                ]
-            }"#;
-            fs::write(tsconfig, tsconfig_content).unwrap();
+            fetch_template(
+                app.path.clone(),
+                "tsconfig.json".to_string(),
+                "resources/tsconfig.json".to_string(),
+            );
         }
-
-        //if create readme
-        if app.include_readme {
-            let readme = format!("{}/README.md", app.path.clone());
-            let readme_content = r#"# Project TitleSimple overview of use/purpose.
-            
-            ## Description
-            
-            An in-depth paragraph about your project and overview of use.
-            
-            ## Getting Started
-            
-            ### Dependencies
-            
-            - Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-            - ex. Windows 10
-            
-            ### Installing
-            
-            - How/where to download your program
-            - Any modifications needed to be made to files/folders
-            
-            ### Executing program
-            
-            - How to run the program
-            - Step-by-step bullets
-            
-            ```
-            code blocks for commands
-            ```
-            
-            ## Help
-            
-            Any advise for common problems or issues.
-            
-            ```
-            command to run if program contains helper info
-            ```
-            
-            ## Authors
-            
-            Contributors names and contact info
-            
-            ex. Dominique Pizzie  
-            ex. [@DomPizzie](https://twitter.com/dompizzie)
-            
-            ## Version History
-            
-            - 0.2
-              - Various bug fixes and optimizations
-              - See [commit change]() or See [release history]()
-            - 0.1
-              - Initial Release
-            
-            ## License
-            
-            This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-            
-            ## Acknowledgments
-            
-            Inspiration, code snippets, etc.
-            
-            - [awesome-readme](https://github.com/matiassingers/awesome-readme)
-            - [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-            - [dbader](https://github.com/dbader/readme-template)
-            - [zenorocha](https://gist.github.com/zenorocha/4526327)
-            - [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
-            "#;
-            fs::write(readme, readme_content).unwrap();
-        }
-        //create the env.example file in the project directory
-       /*  if app.use_env {
-            let env_example = format!("{}/env.example", app.path.clone());
-            let content =
-                std::fs::read_to_string("./meta/env.example").expect("could not read file");
-            fs::write(env_example, content).unwrap();
-        } */
     }
 
     //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
@@ -146,14 +46,27 @@ impl Application {
     }
 }
 
-fn create_file(file_name: String, base_path: String, content: Option<String>) -> std::fs::File {
-    let mut file = fs::File::create(file_name).unwrap();
-    if let Some(c) = content {
-        file.write_all(c.as_bytes()).unwrap();
-    }
-    file
+/**
+ * This function reads the contents of a file and writes it to another (a new) file.
+ * @param: base_path: String, the root directory of the application
+ * @param: file_name: String, the  name of the file to create
+ * @param: path: String, the path to the directory to copy the file content from
+ * @return: String, the contents of the file
+ */
+fn fetch_template(base_path: String, file_name: String, content_path: String) /* -> std::fs::File */
+{
+    //open the file to read the contents
+    let mut content_source = fs::File::open(content_path).unwrap();
+    let mut content = String::new();
+    //red the file contents into a string
+    content_source.read_to_string(&mut content).unwrap();
+    //write the contents to the  new file
+    let file_path = format!("{}/{}", base_path, file_name);
+    let mut file = fs::File::create(file_path).unwrap();
+    file.write_all(content.as_bytes()).unwrap();
 }
 
+#[warn(dead_code)]
 fn read_file(file_name: String) -> String {
     let mut file = fs::File::open(file_name).unwrap();
     let mut contents = String::new();
