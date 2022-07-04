@@ -1,13 +1,18 @@
-//local module
+//local module "init.rs" to initialize the application
 mod init;
 use init as Init;
 use Init::ThunderStorm;
 
+//local module "scaffold.rs" to scaffold the application
+mod scaffold;
+use scaffold as Scaffold;
+// use Scaffold::Application;
 
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
 use std::env;
+// use std::fs;
 use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
@@ -29,7 +34,8 @@ fn main() {
     let args = ThunderArguments::parse();
     let lang = args.lang;
     let mut path = args.path;
-   
+
+    //check the directory provided
     if path == "." || path == "./" {
         path = env::current_dir().unwrap().to_str().unwrap().to_string();
         let is_empty = PathBuf::from(path.clone())
@@ -47,17 +53,31 @@ fn main() {
                 return;
             }
         }
-      
+
+        //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
-        println!("{:?}", application);
+        // fs::create_dir(application.path.clone());
+        // println!("{:?}", application);
+        Scaffold::Application::new(application);
     } else if path.ends_with("/") {
         let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
         path = path.clone().trim_end_matches("/").to_string();
         println!("Creating application in {}", current_path.clone() + &path);
+
+        //create
+        //pass application instance to Scaffold::application::new()
+        let application = ThunderStorm::new(lang.clone(), path.clone());
+        Scaffold::Application::new(application);
+
+        // fs::create_dir(application.path.clone());
+        // println!("{:?}", application);
     } else {
-        // path = path.clone();
-        // path = PathBuf::from(path.clone().to_string().unwrap())
-        println!("Creating application in {}", path);
+        //pass application instance to Scaffold::application::new()
+        let application = ThunderStorm::new(lang.clone(), path.clone());
+        Scaffold::Application::new(application);
+
+        // fs::create_dir(application.path.clone());
+        // println!("{:?}", application);
     }
 
     // fs::create_dir(path.clone());
