@@ -6,13 +6,12 @@ use Init::ThunderStorm;
 //local module "scaffold.rs" to scaffold the application
 mod scaffold;
 use scaffold as Scaffold;
-// use Scaffold::Application;
 
+//external crates
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
 use std::env;
-// use std::fs;
 use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
@@ -56,7 +55,7 @@ fn main() {
 
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
-        Scaffold::Application::new(application);
+        Scaffold::Application::new_pwd(application);
     } else if path.ends_with("/") {
         let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
         path = path.clone().trim_end_matches("/").to_string();
