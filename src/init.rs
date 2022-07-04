@@ -19,14 +19,14 @@ pub struct ThunderStorm {
     pub use_typescript: bool,
     pub test_suit: String,
     pub include_readme: bool,
-    pub include_license: bool,
+  /*   pub include_license: bool,
     pub include_changelog: bool,
     pub include_package_json: bool,
     pub include_gitignore: bool,
     pub include_tsconfig: bool,
     pub include_tslint: bool,
     pub include_eslint: bool,
-    pub include_prettier: bool,
+    pub include_prettier: bool, */
 }
 
 impl ThunderStorm {
@@ -56,22 +56,22 @@ impl ThunderStorm {
             );
         }
         let include_readme = Commander::Confirm::new("Do initialize project with a README?".to_string());
-        let include_license =
-            Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
-        let include_changelog =
-            Commander::Confirm::new("Do initialize project with CHANGELOG?".to_string());
-        let include_package_json =
-            Commander::Confirm::new("Do initialize project with package.json ?".to_string());
-        let include_gitignore =
-            Commander::Confirm::new("Do initialize project with gitignore?".to_string());
-        let include_tsconfig =
-            Commander::Confirm::new("Do initialize project with tsconfig?".to_string());
-        let include_tslint =
-            Commander::Confirm::new("Do initialize project with tslint?".to_string());
-        let include_eslint =
-            Commander::Confirm::new("Do initialize project with eslint?".to_string());
-        let include_prettier =
-            Commander::Confirm::new("Do initialize project with prettier?".to_string());
+        // let include_license =
+        //     Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
+        // let include_changelog =
+        //     Commander::Confirm::new("Do initialize project with CHANGELOG?".to_string());
+        // let include_package_json =
+        //     Commander::Confirm::new("Do initialize project with package.json ?".to_string());
+        // let include_gitignore =
+        //     Commander::Confirm::new("Do initialize project with gitignore?".to_string());
+        // let include_tsconfig =
+        //     Commander::Confirm::new("Do initialize project with tsconfig?".to_string());
+        // let include_tslint =
+        //     Commander::Confirm::new("Do initialize project with tslint?".to_string());
+        // let include_eslint =
+        //     Commander::Confirm::new("Do initialize project with eslint?".to_string());
+        // let include_prettier =
+        //     Commander::Confirm::new("Do initialize project with prettier?".to_string());
 
         //return the ThunderStorm object
         ThunderStorm {
@@ -85,14 +85,14 @@ impl ThunderStorm {
             use_typescript,
             test_suit,
             include_readme,
-            include_license,
+            /* include_license,
             include_changelog,
             include_package_json,
             include_gitignore,
             include_tsconfig,
             include_tslint,
             include_eslint,
-            include_prettier,
+            include_prettier, */
         }
     }
 }
