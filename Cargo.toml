@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Adeoye Adefemi <adefemiadeoye@yahoo.com>"]
 description = "Command Line Application for scaffolding Node.js network applications."
 repository = "https://github.com/opeolluwa/thunderstorm.rs"
+license = "Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -15,3 +16,5 @@ billboard = "0.1"
 figlet-rs = "0.1.3"
 owo-colors = "3.4.0"
 console = "0.10"
+
+
