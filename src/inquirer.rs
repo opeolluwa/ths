@@ -56,8 +56,6 @@ impl Select {
             indicator_style: Style::new().yellow().bold(),
             yes_style: Style::new().yellow().bright(),
             no_style: Style::new().yellow().bright(),
-            // picked_item_prefix: style("❯".to_string()).for_stderr().green(),
-            // active_style: style("❯".to_string()).for_stderr().green(),
             ..ColorfulTheme::default()
         };
         let index = DialougerSelect::with_theme(&theme)
