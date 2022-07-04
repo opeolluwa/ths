@@ -55,11 +55,11 @@ impl ThunderStorm {
                 "Input a space delimited names of testing packages to use".to_string(),
             );
         }
-        let include_readme = Commander::Confirm::new("Do initialize project with a RE?".to_string());
+        let include_readme = Commander::Confirm::new("Do initialize project with a README?".to_string());
         let include_license =
-            Commander::Confirm::new("Do initialize project with license?".to_string());
+            Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
         let include_changelog =
-            Commander::Confirm::new("Do initialize project with changelog?".to_string());
+            Commander::Confirm::new("Do initialize project with CHANGELOG?".to_string());
         let include_package_json =
             Commander::Confirm::new("Do initialize project with package.json ?".to_string());
         let include_gitignore =
