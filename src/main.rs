@@ -56,30 +56,17 @@ fn main() {
 
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
-        // fs::create_dir(application.path.clone());
-        // println!("{:?}", application);
         Scaffold::Application::new(application);
     } else if path.ends_with("/") {
         let current_path = env::current_dir().unwrap().to_str().unwrap().to_string();
         path = path.clone().trim_end_matches("/").to_string();
         println!("Creating application in {}", current_path.clone() + &path);
-
-        //create
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
         Scaffold::Application::new(application);
-
-        // fs::create_dir(application.path.clone());
-        // println!("{:?}", application);
     } else {
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
         Scaffold::Application::new(application);
-
-        // fs::create_dir(application.path.clone());
-        // println!("{:?}", application);
     }
-
-    // fs::create_dir(path.clone());
-    // println!(" path {}", path);
 }
