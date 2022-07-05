@@ -1,17 +1,18 @@
-
 # Thunderstorm.rs ⛈️
-Rust Command Line Application for scaffolding Node.js network applications. 
+
+Rust Command Line Application for scaffolding Node.js network applications.
 
 ## Installation
 
-[Install Thunderstorm.rs binaries](https://example.com) or see this [guide](https://example.com) to build the binary from sources.
+`thunderStorm.rs` is currently distributed via [crates.io](https://crates.io/crates/ths).
 
-    
+## Usage
+
+The shell command `ths` is available to you. Pass the path you want the application to be created
 
 ```bash
-thunderrust init app
+$ ths --path ./app
 ```
-
 
 ## Features
 
@@ -23,37 +24,18 @@ thunderrust init app
 - Setup project directory
 - Ships with nodemon
 
-
 ## Demo
 
-Insert gif or link to demo
-
+See [demo]()
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-
 ## Contributing
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
-
-
-## Support
-
-For support, email fake@fake.com or join our Slack channel.
-
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
-
 ## Feedback
 
-If you have any feedback, please reach out to us at fake@fake.com
-
+If you have any feedback, please reach out to me <a herf="mailto:adefemiadeoye@yahoo.com">adefemiadeoye@yahoo.com</a>
