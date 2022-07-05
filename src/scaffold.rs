@@ -5,7 +5,6 @@
 use crate::ThunderStorm;
 use std::env;
 use std::fs;
-use std::io::Read;
 use std::io::Write;
 
 // use std::path::PathBuf;
@@ -57,14 +56,14 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 ".env".to_string(),
-                "resources/.env".to_string(),
+                include_str!("./../resources/.env").to_string(),
             );
 
             //if env is an option, create a .env.example file
             fetch_template(
                 app.path.clone(),
                 ".env.example".to_string(),
-                "resources/.env.example".to_string(),
+                include_str!("./../resources/.env.example").to_string(),
             );
         }
 
@@ -73,7 +72,7 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 "package.json".to_string(),
-                "resources/package.json".to_string(),
+                include_str!("./../resources/package.json").to_string(),
             );
         }
 
@@ -106,13 +105,9 @@ impl Application {
  * @return: String, the contents of the file
  */
 
-fn fetch_template(base_path: String, file_name: String, content_path: String) /* -> std::fs::File */
+fn fetch_template(base_path: String, file_name: String, content: String) /* -> std::fs::File */
 {
-    //open the file to read the contents
-    let mut content_source = fs::File::open(content_path).unwrap();
-    let mut content = String::new();
-    //red the file contents into a string
-    content_source.read_to_string(&mut content).unwrap();
+    // content_source.read_to_string(&mut content).unwrap();
     //write the contents to the  new file
     let file_path = format!("{}/{}", base_path, file_name);
     let mut file = fs::File::create(file_path).unwrap();

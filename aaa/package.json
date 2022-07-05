@@ -1,0 +1,22 @@
+{
+  "name": "",
+  "version": "",
+  "description": " ",
+  "main": "src/index.ts",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "",
+    "dev": "",
+    "build": "",
+    "test": ""
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  }
+}
