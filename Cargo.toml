@@ -1,6 +1,6 @@
 [package]
-name = "node-app"
-version = "0.2.0"
+name = "ths"
+version = "0.1.0"
 edition = "2021"
 authors = ["Adeoye Adefemi <adefemiadeoye@yahoo.com>"]
 description = "Command Line Application for scaffolding Node.js network applications."
