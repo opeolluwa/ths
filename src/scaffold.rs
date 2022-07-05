@@ -56,7 +56,7 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 ".env".to_string(),
-                include_str!("./../resources/.env").to_string(),
+                include_str!("resources/.env").to_string(),
             );
 
             //if env is an option, create a .env.example file
