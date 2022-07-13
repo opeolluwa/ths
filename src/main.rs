@@ -17,20 +17,31 @@ use std::path::PathBuf;
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct ThunderArguments {
+    #[clap(subcommand)]
+    subcommands: ThunderSubCommands,
     #[clap(short, long, value_parser)]
     path: String, //path to create the application
     #[clap(short, long, value_parser, default_value = "javascript")]
     lang: String, //programming language to use
 }
 
+/// thunderstorm sub commands
+///  "create", "init" and "config"
+/// - create takes  path option : ths create --path ./workspace/app
+/// - init is used to build application in current path
+/// - config to save config files where thunderStorm binary Runs
+#[derive(clap::Subcommand, Debug)]
+pub enum ThunderSubCommands {
+    create,
+    config,
+    init,
+}
 fn main() {
     //display the banner
     let custom_figlet_font =
         FIGfont::from_content(include_str!("./../resources/roman.flf")).unwrap();
     let figure = custom_figlet_font.convert("thunderStorm");
-    println!("{}", figure.unwrap().yellow().bold()
-        .on_black()
-        .to_string());
+    println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
 
     //parse the arguments
     let args = ThunderArguments::parse();
