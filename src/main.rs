@@ -1,29 +1,30 @@
 //local module "init.rs" to initialize the application
-mod init;
-use init as Init;
-use Init::ThunderStorm;
+// mod init;
+// use init as Init;
+// use Init::ThunderStorm;
 
 //local module "scaffold.rs" to scaffold the application
-mod scaffold;
-use scaffold as Scaffold;
+// mod scaffold;
+// use scaffold as Scaffold;
 
 //external crates
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
-use std::env;
-use std::path::PathBuf;
+// use std::env;
+// use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct ThunderArguments {
     #[clap(subcommand)]
-    subcommands: ThunderSubCommands,
-    #[clap(short, long, value_parser)]
+    action: ThunderSubCommands,
+    /* #[clap(short, long, value_parser)]
     path: String, //path to create the application
     #[clap(short, long, value_parser, default_value = "javascript")]
-    lang: String, //programming language to use
+    lang: String, //programming language to use */
 }
+
 
 /// thunderstorm sub commands
 ///  "create", "init" and "config"
@@ -32,9 +33,19 @@ struct ThunderArguments {
 /// - config to save config files where thunderStorm binary Runs
 #[derive(clap::Subcommand, Debug)]
 pub enum ThunderSubCommands {
-    Create,
-    Config,
-    Init,
+    Create {
+        #[clap(short, long, value_parser, forbid_empty_values = true)]
+        path: String, //path to create the application
+        #[clap(short, long, value_parser, default_value = "javascript")]
+        lang: String, //programming language to use
+    },
+    Init {
+        #[clap(short, long, value_parser, default_value = "javascript")]
+        lang: String, //programming language to use
+    },
+    Config {
+        // todo!()
+    },
 }
 fn main() {
     //display the banner
@@ -45,7 +56,8 @@ fn main() {
 
     //parse the arguments
     let args = ThunderArguments::parse();
-    let lang = args.lang;
+    println!("{:?}", args);
+    /*  let lang = args.lang;
     let mut path = args.path;
 
     //check the directory provided
@@ -81,5 +93,5 @@ fn main() {
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
         Scaffold::Application::new(application);
-    }
+    } */
 }
