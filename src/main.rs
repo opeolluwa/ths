@@ -32,9 +32,9 @@ struct ThunderArguments {
 /// - config to save config files where thunderStorm binary Runs
 #[derive(clap::Subcommand, Debug)]
 pub enum ThunderSubCommands {
-    create,
-    config,
-    init,
+    Create,
+    Config,
+    Init,
 }
 fn main() {
     //display the banner
