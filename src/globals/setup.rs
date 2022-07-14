@@ -1,11 +1,10 @@
 //load in the inquirer library
-#[path = "inquirer.rs"]
-mod inquirer;
-use inquirer as Commander;
-
+use crate::globals::inquirer as Commander;
 #[path = "dirs.rs"]
 mod dirs;
 use dirs as Dirs;
+use figlet_rs::FIGfont;
+use owo_colors::OwoColorize;
 
 #[derive(Debug)]
 pub struct ThunderStorm {
@@ -29,7 +28,13 @@ pub struct ThunderStorm {
 }
 
 impl ThunderStorm {
-    pub fn new(lang: String, path: String) -> ThunderStorm {
+    pub fn parse_options(lang: String, path: String) -> ThunderStorm {
+        //display the banner
+        let custom_figlet_font =
+            FIGfont::from_content(include_str!("./../../resources/roman.flf")).unwrap();
+        let figure = custom_figlet_font.convert("thunderStorm");
+        println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
+        println!("\n");
         //compute the application name
         let application_name = Commander::Prompt::new("Application name ".to_string());
         let dirs = Dirs::create(); //compute the directories to create

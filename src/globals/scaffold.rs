@@ -1,13 +1,7 @@
-//THIS MODULE WILL TAKE THE THUNDER STORM OBJECT AND BUILD THE PROJECT DIRECTORY USING THE GIVEN CONFIG
-//-----------------------------------------------------------------------------------------------------
-
-//import "init.rs" module here, essentially the Thunderstorm Struct
-use crate::ThunderStorm;
-use std::env;
-use std::fs;
+//this module will take the thunder storm object and build the project directory using the given config
+use crate::globals::setup::ThunderStorm;
 use std::io::Write;
-
-// use std::path::PathBuf;
+use std::{env, fs};
 
 #[derive(Debug)]
 pub struct Application {}
@@ -56,14 +50,14 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 ".env".to_string(),
-                include_str!("./../resources/.env").to_string(),
+                include_str!("./../../resources/.env").to_string(),
             );
 
             //if env is an option, create a .env.example file
             fetch_template(
                 app.path.clone(),
                 ".env.example".to_string(),
-                include_str!("./../resources/.env.example").to_string(),
+                include_str!("./../../resources/.env.example").to_string(),
             );
         }
 
@@ -72,7 +66,7 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 "package.json".to_string(),
-                include_str!("./../resources/package.json").to_string(),
+                include_str!("./../../resources/package.json").to_string(),
             );
         }
 
@@ -91,7 +85,7 @@ impl Application {
         let path = env::current_dir().unwrap().to_str().unwrap().to_string();
         println!("{:?}", app);
         fs::create_dir(path.clone()).unwrap();
-
+        todo!("create the project directory in the PWD");
         // fs::create_dir(app.path.clone());
         // println!(" path {}", path);
     }
@@ -105,8 +99,7 @@ impl Application {
  * @return: String, the contents of the file
  */
 
-fn fetch_template(base_path: String, file_name: String, content: String) /* -> std::fs::File */
-{
+fn fetch_template(base_path: String, file_name: String, content: String) {
     // content_source.read_to_string(&mut content).unwrap();
     //write the contents to the  new file
     let file_path = format!("{}/{}", base_path, file_name);

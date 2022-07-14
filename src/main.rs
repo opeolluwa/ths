@@ -1,40 +1,35 @@
-//local module "init.rs" to initialize the application
-mod init;
-use init as Init;
-use Init::ThunderStorm;
-
-//local module "scaffold.rs" to scaffold the application
-mod scaffold;
-use scaffold as Scaffold;
-
+//modules
+mod args;
+mod commands;
+mod globals;
 //external crates
 use clap::Parser;
-use figlet_rs::FIGfont;
-use owo_colors::OwoColorize;
-use std::env;
-use std::path::PathBuf;
-
-#[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
-struct ThunderArguments {
-    #[clap(short, long, value_parser)]
-    path: String, //path to create the application
-    #[clap(short, long, value_parser, default_value = "javascript")]
-    lang: String, //programming language to use
-}
 
 fn main() {
-    //display the banner
-    let custom_figlet_font =
-        FIGfont::from_content(include_str!("./../resources/roman.flf")).unwrap();
-    let figure = custom_figlet_font.convert("thunderStorm");
-    println!("{}", figure.unwrap().yellow().bold()
-        .on_black()
-        .to_string());
-
+   
     //parse the arguments
-    let args = ThunderArguments::parse();
-    let lang = args.lang;
+    let args = args::ThunderArguments::parse();
+    //try to  get the action command from the arguments
+    let action = args.action;
+    println!("{:?}", action);
+
+    //match the sub commands and execute the appropriate commands
+    match action {
+        args::ThunderSubCommands::Create(create_command) => {
+            //create the application
+            commands::create::build(create_command.lang, create_command.path);
+        }
+        args::ThunderSubCommands::Init(init_command) => {
+            commands::init::build(init_command.lang);
+            // println!("{:?}", action);
+        }
+        args::ThunderSubCommands::Config(config_command) => {
+            println!("{:?}", config_command);
+        }
+    }
+
+    // println!("{:?}", args);
+    /*  let lang = args.lang;
     let mut path = args.path;
 
     //check the directory provided
@@ -70,5 +65,5 @@ fn main() {
         //pass application instance to Scaffold::application::new()
         let application = ThunderStorm::new(lang.clone(), path.clone());
         Scaffold::Application::new(application);
-    }
+    } */
 }

@@ -1,4 +1,4 @@
-// a module for creating the application directories
+///  a module for creating the application directories
 use dialoguer::{theme::ColorfulTheme, Checkboxes};
 //prompt user for folders to create, return array of folder names
 pub fn create() -> Vec<String> {
