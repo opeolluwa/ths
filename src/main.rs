@@ -1,23 +1,11 @@
-//local module "init.rs" to initialize the application
-// mod init;
-// use init as Init;
-// use Init::ThunderStorm;
-
-//local module "scaffold.rs" to scaffold the application
-// mod scaffold;
-// use scaffold as Scaffold;
+//modules 
 mod args;
 mod globals;
+
 //external crates
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
-// use std::env;
-// use std::path::PathBuf;
-// {
-//     #[clap(short, long, value_parser, default_value = "javascript")]
-//     lang: String, //programming language to use
-// },
 
 fn main() {
     //display the banner

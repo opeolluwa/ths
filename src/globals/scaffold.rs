@@ -1,13 +1,8 @@
-//THIS MODULE WILL TAKE THE THUNDER STORM OBJECT AND BUILD THE PROJECT DIRECTORY USING THE GIVEN CONFIG
-//-----------------------------------------------------------------------------------------------------
-
-//import "init.rs" module here, essentially the Thunderstorm Struct
+//this module will take the thunder storm object and build the project directory using the given config
 use crate::globals::init::ThunderStorm;
 use std::env;
 use std::fs;
 use std::io::Write;
-
-// use std::path::PathBuf;
 
 #[derive(Debug)]
 pub struct Application {}
@@ -53,11 +48,11 @@ impl Application {
 
         //if env is an option
         if app.use_env {
-            /*    fetch_template(
+            fetch_template(
                 app.path.clone(),
                 ".env".to_string(),
-                include_str!("../resources/.env").to_string(),
-            ); */
+                include_str!("./../../resources/.env").to_string(),
+            );
 
             //if env is an option, create a .env.example file
             fetch_template(
@@ -86,7 +81,7 @@ impl Application {
         } */
     }
 
-    //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
+    /*  //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
     pub fn new_pwd(app: ThunderStorm) {
         let path = env::current_dir().unwrap().to_str().unwrap().to_string();
         println!("{:?}", app);
@@ -94,7 +89,7 @@ impl Application {
 
         // fs::create_dir(app.path.clone());
         // println!(" path {}", path);
-    }
+    } */
 }
 
 /**
@@ -105,8 +100,7 @@ impl Application {
  * @return: String, the contents of the file
  */
 
-fn fetch_template(base_path: String, file_name: String, content: String) /* -> std::fs::File */
-{
+fn fetch_template(base_path: String, file_name: String, content: String) {
     // content_source.read_to_string(&mut content).unwrap();
     //write the contents to the  new file
     let file_path = format!("{}/{}", base_path, file_name);
