@@ -1,6 +1,10 @@
-use crate::globals::scaffold;
+use crate::globals::setup::ThunderStorm;
+use crate::globals::scaffold as Scaffold;
+use std::env;
+use std::path::PathBuf;
+
 /// accept language to use, call on the scaffold to build the application from user config
-pub fn ThunderInit(language: String) {
+pub fn build(language: String) {
     //check the current directory if it contains  any files or folder
     let path = env::current_dir().unwrap().to_str().unwrap().to_string();
     let is_empty = PathBuf::from(path.clone())
@@ -19,7 +23,7 @@ pub fn ThunderInit(language: String) {
         }
     }
 
-    //pass application instance to Scaffold::application::new()
-    let application = ThunderStorm::new(lang.clone(), path.clone());
+    //pass application instance configuration and pass the config object to Scaffold::application::new()
+    let application = ThunderStorm::parse_options(language.clone(), path.clone());
     Scaffold::Application::new_pwd(application);
 }

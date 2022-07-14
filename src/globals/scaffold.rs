@@ -1,8 +1,7 @@
 //this module will take the thunder storm object and build the project directory using the given config
-use crate::globals::init::ThunderStorm;
-
-use std::fs;
+use crate::globals::setup::ThunderStorm;
 use std::io::Write;
+use std::{env, fs};
 
 #[derive(Debug)]
 pub struct Application {}
@@ -81,15 +80,15 @@ impl Application {
         } */
     }
 
-    /*  //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
+    //the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
     pub fn new_pwd(app: ThunderStorm) {
         let path = env::current_dir().unwrap().to_str().unwrap().to_string();
         println!("{:?}", app);
         fs::create_dir(path.clone()).unwrap();
-
+        todo!("create the project directory in the PWD");
         // fs::create_dir(app.path.clone());
         // println!(" path {}", path);
-    } */
+    }
 }
 
 /**

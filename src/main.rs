@@ -1,19 +1,12 @@
-//modules 
+//modules
 mod args;
+mod commands;
 mod globals;
-
 //external crates
 use clap::Parser;
-use figlet_rs::FIGfont;
-use owo_colors::OwoColorize;
 
 fn main() {
-    //display the banner
-    let custom_figlet_font =
-        FIGfont::from_content(include_str!("./../resources/roman.flf")).unwrap();
-    let figure = custom_figlet_font.convert("thunderStorm");
-    println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
-
+   
     //parse the arguments
     let args = args::ThunderArguments::parse();
     //try to  get the action command from the arguments
@@ -23,10 +16,12 @@ fn main() {
     //match the sub commands and execute the appropriate commands
     match action {
         args::ThunderSubCommands::Create(create_command) => {
-            println!("{:?}", create_command);
+            //create the application
+            commands::create::build(create_command.lang, create_command.path);
         }
-        args::ThunderSubCommands::Init(action) => {
-            println!("{:?}", action);
+        args::ThunderSubCommands::Init(init_command) => {
+            commands::init::build(init_command.lang);
+            // println!("{:?}", action);
         }
         args::ThunderSubCommands::Config(config_command) => {
             println!("{:?}", config_command);
