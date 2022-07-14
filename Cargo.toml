@@ -1,6 +1,6 @@
 [package]
 name = "ths"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 authors = ["Adeoye Adefemi <adefemiadeoye@yahoo.com>"]
 description = "Command Line Application for scaffolding Node.js network applications."

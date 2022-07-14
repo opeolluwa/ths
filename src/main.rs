@@ -19,12 +19,7 @@ use owo_colors::OwoColorize;
 struct ThunderArguments {
     #[clap(subcommand)]
     action: ThunderSubCommands,
-    /* #[clap(short, long, value_parser)]
-    path: String, //path to create the application
-    #[clap(short, long, value_parser, default_value = "javascript")]
-    lang: String, //programming language to use */
 }
-
 
 /// thunderstorm sub commands
 ///  "create", "init" and "config"
@@ -33,18 +28,23 @@ struct ThunderArguments {
 /// - config to save config files where thunderStorm binary Runs
 #[derive(clap::Subcommand, Debug)]
 pub enum ThunderSubCommands {
+    ///create a new application im provided path
     Create {
         #[clap(short, long, value_parser, forbid_empty_values = true)]
         path: String, //path to create the application
         #[clap(short, long, value_parser, default_value = "javascript")]
         lang: String, //programming language to use
     },
+    ///create application in current path
     Init {
         #[clap(short, long, value_parser, default_value = "javascript")]
         lang: String, //programming language to use
     },
+    /// extend the thunderStorm configuration
     Config {
-        // todo!()
+        #[clap(short, long, value_parser, default_value = "./")]
+        config_path: String, //path to save config files
+                             // todo!()
     },
 }
 fn main() {
