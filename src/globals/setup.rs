@@ -34,7 +34,6 @@ impl ThunderStorm {
             FIGfont::from_content(include_str!("./../../resources/roman.flf")).unwrap();
         let figure = custom_figlet_font.convert("thunderStorm");
         println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
-        println!("\n");
         //compute the application name
         let application_name = Commander::Prompt::new("Application name ".to_string());
         let dirs = Dirs::create(); //compute the directories to create
@@ -47,9 +46,7 @@ impl ThunderStorm {
             known_package_managers,
         );
 
-        //inquire the user configuration
-        let use_env =
-            Commander::Confirm::new("Do you want to use the environment variables?".to_string());
+        //inquire the user configuration for the project
         let use_git =
             Commander::Confirm::new("Do you want to initialize as a git repository?".to_string());
         let use_typescript = Commander::Confirm::new("Do you want to use typescript?".to_string());
@@ -60,14 +57,12 @@ impl ThunderStorm {
                 "Input a space delimited names of testing packages to use".to_string(),
             );
         }
-        let include_readme =
-            Commander::Confirm::new("Do initialize project with a README?".to_string());
+
         let include_license =
             Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
         let include_package_json =
             Commander::Confirm::new("Do initialize project with package.json ?".to_string());
-        let include_gitignore =
-            Commander::Confirm::new("Do initialize project with gitignore?".to_string());
+
         /*    let include_tsconfig =
                    Commander::Confirm::new("Do initialize project with tsconfig?".to_string());
                     let include_changelog =
@@ -86,14 +81,14 @@ impl ThunderStorm {
             path,
             application_name,
             package_manager,
-            use_env,
+            use_env:true,
             use_git,
             use_typescript,
             test_suit,
-            include_readme,
+            include_readme: true,
             include_license,
             include_package_json,
-            include_gitignore,
+            include_gitignore: true,
             /*   include_tsconfig,
             include_tslint,
             include_eslint,
