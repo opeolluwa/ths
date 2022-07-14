@@ -1,6 +1,6 @@
 //this module will take the thunder storm object and build the project directory using the given config
 use crate::globals::init::ThunderStorm;
-use std::env;
+
 use std::fs;
 use std::io::Write;
 
