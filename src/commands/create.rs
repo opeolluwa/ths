@@ -3,10 +3,9 @@ use crate::globals::setup::ThunderStorm;
 use std::env;
 use std::path::PathBuf;
 
-/// accept language to use, call on the scaffold to build the application from user config
+/// accept language to use, call on the scaffold to build the application from user options
 pub fn build(language: String, path: String) {
-    //check if the path provided is valid or not
-    //check the directory provided
+    //check if the path provided is valid or not check the directory provided
     if path == "." || path == "./" {
        let path = env::current_dir().unwrap().to_str().unwrap().to_string();
         let is_empty = PathBuf::from(path.clone())

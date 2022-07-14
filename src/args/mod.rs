@@ -1,7 +1,9 @@
 use clap::*;
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
-pub(crate) struct ThunderArguments {
+/// parse the arguments and return the sub command
+pub(crate) struct ThunderArgs {
+    ///thunder sub commands
     #[clap(subcommand)]
     pub action: ThunderSubCommands,
 }
