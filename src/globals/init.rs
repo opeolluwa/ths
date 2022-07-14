@@ -1,8 +1,5 @@
 //load in the inquirer library
-#[path = "inquirer.rs"]
-mod inquirer;
-use inquirer as Commander;
-
+use crate::globals::inquirer as Commander;
 #[path = "dirs.rs"]
 mod dirs;
 use dirs as Dirs;

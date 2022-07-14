@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------------------------------
 
 //import "init.rs" module here, essentially the Thunderstorm Struct
-use crate::ThunderStorm;
+use crate::globals::init::ThunderStorm;
 use std::env;
 use std::fs;
 use std::io::Write;
@@ -53,7 +53,7 @@ impl Application {
 
         //if env is an option
         if app.use_env {
-         /*    fetch_template(
+            /*    fetch_template(
                 app.path.clone(),
                 ".env".to_string(),
                 include_str!("../resources/.env").to_string(),
@@ -63,7 +63,7 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 ".env.example".to_string(),
-                include_str!("./../resources/.env.example").to_string(),
+                include_str!("./../../resources/.env.example").to_string(),
             );
         }
 
@@ -72,7 +72,7 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 "package.json".to_string(),
-                include_str!("./../resources/package.json").to_string(),
+                include_str!("./../../resources/package.json").to_string(),
             );
         }
 

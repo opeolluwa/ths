@@ -7,6 +7,7 @@
 // mod scaffold;
 // use scaffold as Scaffold;
 mod args;
+mod globals;
 //external crates
 use clap::Parser;
 use figlet_rs::FIGfont;
@@ -27,7 +28,24 @@ fn main() {
 
     //parse the arguments
     let args = args::ThunderArguments::parse();
-    println!("{:?}", args);
+    //try to  get the action command from the arguments
+    let action = args.action;
+    println!("{:?}", action);
+
+    //match the sub commands and execute the appropriate commands
+    match action {
+        args::ThunderSubCommands::Create(create_command) => {
+            println!("{:?}", create_command);
+        }
+        args::ThunderSubCommands::Init(action) => {
+            println!("{:?}", action);
+        }
+        args::ThunderSubCommands::Config(config_command) => {
+            println!("{:?}", config_command);
+        }
+    }
+
+    // println!("{:?}", args);
     /*  let lang = args.lang;
     let mut path = args.path;
 

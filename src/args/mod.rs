@@ -3,7 +3,7 @@ use clap::*;
 #[clap(author, version, about, long_about = None)]
 pub(crate) struct ThunderArguments {
     #[clap(subcommand)]
-    action: ThunderSubCommands,
+    pub action: ThunderSubCommands,
 }
 
 /// thunderstorm sub commands
@@ -26,10 +26,10 @@ pub enum ThunderSubCommands {
 pub struct CreateCommands {
     #[clap(short, long, value_parser, forbid_empty_values = true)]
     ///path to the directory where the application will be created
-    path: String, //path to create the application
+    pub path: String, //path to create the application
     #[clap(short, long, value_parser, default_value = "javascript")]
     ///programming language to use for the application, default to JavaScript
-    lang: String, //programming language to use
+    pub lang: String, //programming language to use
 }
 
 /// create the init command, essentially a struct to hold the init command arguments and options
@@ -37,7 +37,7 @@ pub struct CreateCommands {
 pub struct InitCommands {
     #[clap(short, long, value_parser, default_value = "javascript")]
     ///programming language to use for the application, default to JavaScript
-    lang: String,
+    pub lang: String,
 }
 
 /// create the config command, essentially a struct to hold the config command arguments and options
@@ -45,5 +45,5 @@ pub struct InitCommands {
 pub struct ConfigCommands {
     ///path to .thunderConfig file
     #[clap(short, long, value_parser, default_value = "./.thunderConfig")]
-    config_path: String,
+    pub config_path: String,
 }
