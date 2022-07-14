@@ -8,9 +8,7 @@ pub struct Application {}
 impl Application {
     //the scaffold method accepts the thunderstorm instance to create the project directory in the given path
     pub fn new(app: ThunderStorm) {
-        //create th root directory
-        //loop through the thunderstorm instance and create the required folders in the project directory
-        fs::create_dir(app.path.clone()).unwrap(); //create the root directory
+        fs::create_dir_all(app.path.clone()).unwrap(); //create the root directory
         fs::create_dir(app.path.clone() + "/src").unwrap(); //create the src directory in root directory
         for folder in app.dirs.clone() {
             //loop through the directories to create in the src directory
