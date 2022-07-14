@@ -6,47 +6,18 @@
 //local module "scaffold.rs" to scaffold the application
 // mod scaffold;
 // use scaffold as Scaffold;
-
+mod args;
 //external crates
 use clap::Parser;
 use figlet_rs::FIGfont;
 use owo_colors::OwoColorize;
 // use std::env;
 // use std::path::PathBuf;
+// {
+//     #[clap(short, long, value_parser, default_value = "javascript")]
+//     lang: String, //programming language to use
+// },
 
-#[derive(Parser, Debug)]
-#[clap(author, version, about, long_about = None)]
-struct ThunderArguments {
-    #[clap(subcommand)]
-    action: ThunderSubCommands,
-}
-
-/// thunderstorm sub commands
-///  "create", "init" and "config"
-/// - create takes  path option : ths create --path ./workspace/app
-/// - init is used to build application in current path
-/// - config to save config files where thunderStorm binary Runs
-#[derive(clap::Subcommand, Debug)]
-pub enum ThunderSubCommands {
-    ///create a new application im provided path
-    Create {
-        #[clap(short, long, value_parser, forbid_empty_values = true)]
-        path: String, //path to create the application
-        #[clap(short, long, value_parser, default_value = "javascript")]
-        lang: String, //programming language to use
-    },
-    ///create application in current path
-    Init {
-        #[clap(short, long, value_parser, default_value = "javascript")]
-        lang: String, //programming language to use
-    },
-    /// extend the thunderStorm configuration
-    Config {
-        #[clap(short, long, value_parser, default_value = "./")]
-        config_path: String, //path to save config files
-                             // todo!()
-    },
-}
 fn main() {
     //display the banner
     let custom_figlet_font =
@@ -55,7 +26,7 @@ fn main() {
     println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
 
     //parse the arguments
-    let args = ThunderArguments::parse();
+    let args = args::ThunderArguments::parse();
     println!("{:?}", args);
     /*  let lang = args.lang;
     let mut path = args.path;
