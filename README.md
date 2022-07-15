@@ -1,6 +1,6 @@
 # Thunderstorm.rs ⛈️
 
-Rust Command Line Application for scaffolding Node.js network applications.
+Rust Command Line Application for setting up Node.js backend applications.
 
 ## Installation
 
@@ -11,8 +11,25 @@ Rust Command Line Application for scaffolding Node.js network applications.
 The shell command `ths` is available to you. Pass the path you want the application to be created
 
 ```bash
-$ ths --path ./app
+# crate a new application in a folder called `app`
+$ ths create --path ./app
+
+# or using the short option for run
+$ ths create -p ./app
+
 ```
+
+To create application in current directory run
+
+```bash
+$ ths init
+```
+
+To see more available options run 
+```bash
+$ ths --help
+```
+
 
 ## Features
 
