@@ -16,7 +16,7 @@ pub struct ThunderStorm {
     pub use_env: bool,
     pub use_git: bool,
     pub use_typescript: bool,
-    pub test_suit: String,
+    // pub test_suit: String,
     pub include_readme: bool,
     pub include_license: bool,
     pub include_package_json: bool,
@@ -50,14 +50,14 @@ impl ThunderStorm {
         let use_git =
             Commander::Confirm::new("Do you want to initialize as a git repository?".to_string());
         let use_typescript = Commander::Confirm::new("Do you want to use typescript?".to_string());
-        let query_test_suit = Commander::Confirm::new("Do you want to setup test suit".to_string());
-        let mut test_suit = "".to_string();
+        /* let query_test_suit = Commander::Confirm::new("Do you want to setup test suit".to_string()); */
+      /*   let mut test_suit = "".to_string();
         if query_test_suit {
             test_suit = Commander::Prompt::new(
                 "Input a space delimited names of testing packages to use".to_string(),
             );
         }
-
+ */
         let include_license =
             Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
         let include_package_json =
@@ -84,7 +84,7 @@ impl ThunderStorm {
             use_env:true,
             use_git,
             use_typescript,
-            test_suit,
+            // test_suit,
             include_readme: true,
             include_license,
             include_package_json,
