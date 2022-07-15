@@ -54,11 +54,7 @@ impl Application {
 
         //if env is an option
         if app.use_env {
-            fetch_template(
-                app.path.clone(),
-                ".env".to_string(),
-                include_str!("./../../resources/.env").to_string(),
-            );
+            fetch_template(app.path.clone(), ".env".to_string(), "".to_string());
 
             //if env is an option, create a .env.example file
             fetch_template(
@@ -121,11 +117,7 @@ impl Application {
 
         //if env is an option
         if app.use_env {
-            fetch_template(
-                app.path.clone(),
-                ".env".to_string(),
-                include_str!("./../../resources/.env").to_string(),
-            );
+            fetch_template(app.path.clone(), ".env".to_string(), "".to_string());
 
             //if env is an option, create a .env.example file
             fetch_template(
@@ -158,4 +150,3 @@ fn fetch_template(base_path: String, file_name: String, content: String) {
     let mut file = fs::File::create(file_path).unwrap();
     file.write_all(content.as_bytes()).unwrap();
 }
-
