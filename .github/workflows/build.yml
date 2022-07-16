@@ -10,7 +10,7 @@ jobs:
     name: "Build the macOS / AMD64 version of thunderStorm"
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@production
+      - uses: actions/checkout@master
       - name: "Remove Rust documentation"
         run: rustup component remove rust-docs
         continue-on-error: true
@@ -30,7 +30,7 @@ jobs:
     name: "Build the Linux / AMD64 version of thunderStorm"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@production
+      - uses: actions/checkout@master
       - name: "Install GCC"
         run: |
           sudo apt update
@@ -60,7 +60,7 @@ jobs:
     name: "Build the Windows / AMD64 version of thunderStorm"
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@production
+      - uses: actions/checkout@master
       - name: "Remove Rust documentation"
         run: rustup component remove rust-docs
         continue-on-error: true
