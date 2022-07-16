@@ -101,9 +101,9 @@ jobs:
         run: mkdir stage
       - name: "Rename the artifacts to include the operating system and architecture."
         run: |
-          mv ./release/linux/amd64/thunderStorm ./stage/thunderStorm.linux.amd64
-          mv ./release/macos/amd64/thunderStorm ./stage/thunderStorm.macos.amd64
-          mv ./release/windows/amd64/thunderStorm.exe ./stage/thunderStorm.windows.amd64
+          mv ./release/linux/amd64/ths ./stage/thunderStorm.linux.amd64
+          mv ./release/macos/amd64/ths ./stage/thunderStorm.macos.amd64
+          mv ./release/windows/amd64/ths.exe ./stage/thunderStorm.windows.amd64
       - name: "Brag #1"
         run: find ./release
       - name: "Brag #2"
