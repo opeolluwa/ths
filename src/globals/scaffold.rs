@@ -39,7 +39,10 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 "README.md".to_string(),
-                readme::generate_content(app.application_name.to_string()),
+                readme::generate_content(
+                    app.application_name.to_string(),
+                    app.application_description.to_string(),
+                ),
             );
         }
 
@@ -102,7 +105,10 @@ impl Application {
             fetch_template(
                 app.path.clone(),
                 "README.md".to_string(),
-                readme::generate_content(app.application_name.to_string()),
+                readme::generate_content(
+                    app.application_name.to_string(),
+                    app.application_description.to_string(),
+                ),
             );
         }
 

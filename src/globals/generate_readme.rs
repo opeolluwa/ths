@@ -1,5 +1,5 @@
 /// a function to generate the application readme file
-pub fn generate_content(application_name: String) -> String {
+pub fn generate_content(application_name: String, application_description: String) -> String {
     let content = format!(
         "
 # {}
@@ -7,8 +7,7 @@ pub fn generate_content(application_name: String) -> String {
 Simple overview of use/purpose.
 
 ## Description
-
-An in-depth paragraph about your project and overview of use.
+{}
 
 ## Getting Started
 
@@ -69,7 +68,9 @@ Inspiration, code snippets, etc.
 - [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
 
     ",
-        application_name
+        application_name, application_description
     );
+
+    //return the generated content
     content
 }

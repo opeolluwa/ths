@@ -9,6 +9,7 @@ use owo_colors::OwoColorize;
 #[derive(Debug)]
 pub struct ThunderStorm {
     pub application_name: String,
+    pub application_description: String,
     pub lang: String,
     pub path: String,
     pub dirs: Vec<String>,
@@ -35,7 +36,9 @@ impl ThunderStorm {
         let figure = custom_figlet_font.convert("thunderStorm");
         println!("{}", figure.unwrap().yellow().bold().on_black().to_string());
         //compute the application name
-        let application_name = Commander::Prompt::new("Application name ".to_string());
+        let application_name = Commander::Prompt::new("Application name? ".to_string());
+        let application_description = Commander::Prompt::new("Application description? ".to_string());
+
         let dirs = Dirs::create(); //compute the directories to create
 
         //inquire the package manager, use of env and typescript
@@ -51,13 +54,13 @@ impl ThunderStorm {
             Commander::Confirm::new("Do you want to initialize as a git repository?".to_string());
         let use_typescript = Commander::Confirm::new("Do you want to use typescript?".to_string());
         /* let query_test_suit = Commander::Confirm::new("Do you want to setup test suit".to_string()); */
-      /*   let mut test_suit = "".to_string();
-        if query_test_suit {
-            test_suit = Commander::Prompt::new(
-                "Input a space delimited names of testing packages to use".to_string(),
-            );
-        }
- */
+        /*   let mut test_suit = "".to_string();
+               if query_test_suit {
+                   test_suit = Commander::Prompt::new(
+                       "Input a space delimited names of testing packages to use".to_string(),
+                   );
+               }
+        */
         let include_license =
             Commander::Confirm::new("Do initialize project with LICENSE?".to_string());
         let include_package_json =
@@ -80,8 +83,9 @@ impl ThunderStorm {
             lang,
             path,
             application_name,
+            application_description,
             package_manager,
-            use_env:true,
+            use_env: true,
             use_git,
             use_typescript,
             // test_suit,
