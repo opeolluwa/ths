@@ -4,7 +4,7 @@ Rust Command Line Application for setting up Node.js backend applications.
 
 ## Installation
 
-`thunderStorm.rs` is currently distributed via [crates.io](https://crates.io/crates/ths).
+`thunderStorm` is currently distributed via [crates.io](https://crates.io/crates/ths).
 
 ## Usage
 
