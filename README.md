@@ -1,4 +1,4 @@
-# Thunderstorm.rs ⛈️
+# tunderStorm
 
 Rust Command Line Application for setting up Node.js backend applications.
 
