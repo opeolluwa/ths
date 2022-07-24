@@ -75,71 +75,16 @@ impl Application {
                 include_str!("./../../resources/package.json").to_string(),
             );
         }
-    }
 
-    ///the scaffold method accepts the thunderstorm instance to create the project directory in the PWD
-    /// creating only the missing directories and files
-    /// #Example
-    /// ```bash
-    /// ths init
-    /// ```
-    pub fn new_pwd(app: ThunderStorm) {
-        fs::create_dir(app.path.clone() + "/src").unwrap(); //create the src directory in root directory
-        for folder in app.dirs.clone() {
-            //loop through the directories to create in the src directory
-            fs::create_dir(format!("{}/src/{}", app.path.clone(), folder)).unwrap();
-        }
-
-        //loop through the thunderstorm instance and create the required files in the project directory
-        //if typescript is an option
-        if app.lang == "typescript" || app.use_typescript {
-            fetch_template(
-                app.path.clone(),
-                "tsconfig.json".to_string(),
-                include_str!("./../../resources/tsconfig.json").to_string(),
-            );
-        }
-
-        //if readme is an option
-        if app.include_readme {
-            fetch_template(
-                app.path.clone(),
-                "README.md".to_string(),
-                readme::generate_content(
-                    app.application_name.to_string(),
-                    app.application_description.to_string(),
-                ),
-            );
-        }
-
-        //if gitignore is an option
-        if app.use_git {
-            fetch_template(
-                app.path.clone(),
-                ".gitignore".to_string(),
-                include_str!("./../../resources/.gitignore").to_string(),
-            );
-        }
-
-        //if env is an option
-        if app.use_env {
-            fetch_template(app.path.clone(), ".env".to_string(), "".to_string());
-
-            //if env is an option, create a .env.example file
-            fetch_template(
-                app.path.clone(),
-                ".env.example".to_string(),
-                include_str!("./../../resources/.env.example").to_string(),
-            );
-        }
-
-        //if include package.json is an option
-        if app.include_package_json {
-            fetch_template(
-                app.path.clone(),
-                "package.json".to_string(),
-                include_str!("./../../resources/package.json").to_string(),
-            );
+        //show the directory structure created
+        let paths = fs::read_dir(app.path.clone()).unwrap();
+        println!("
+        
+        Directory structure created:
+        
+        ");
+        for path in paths {
+            println!("  {}", path.unwrap().path().display())
         }
     }
 }

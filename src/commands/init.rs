@@ -25,5 +25,5 @@ pub fn build(language: String) {
 
     //pass application instance configuration and pass the config object to Scaffold::application::new()
     let application = ThunderStorm::parse_options(language.clone(), path.clone());
-    Scaffold::Application::new_pwd(application);
+    Scaffold::Application::new(application);
 }
