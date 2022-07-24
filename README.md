@@ -25,21 +25,21 @@ To create application in current directory run
 $ ths init
 ```
 
-To see more available options run 
+To see more available options run
+
 ```bash
 $ ths --help
 ```
 
-
 ## Features
 
-- Setup Express/JavaScript application
-- Setup Express/Typescript application
-- Extend CLI configuration
-- Setup test suit for network applications
-- Use preferred Package manager 📦
-- Setup project directory
-- Ships with nodemon
+- [x] Setup Express/JavaScript application
+- [] Setup Express/Typescript application
+- [] Extend CLI configuration
+- [] Setup test suit for network applications
+- [] Use preferred Package manager 📦
+- [] Setup project directory
+- [] Ships with nodemon
 
 ## Demo
 

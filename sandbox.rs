@@ -7,3 +7,11 @@ fn main() {
         println!("Name: {}", path.unwrap().path().display())
     }
 }
+
+
+//CHECK IF DIRECTOTY ALREADY ESISTS
+use std::path::Path;
+
+fn main() {
+    println!("{}", Path::new("/etc/hosts").exists());
+}
