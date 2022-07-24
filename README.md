@@ -33,13 +33,13 @@ $ ths --help
 
 ## Features
 
-- [x] Setup Express/JavaScript application
-- [] Setup Express/Typescript application
-- [] Extend CLI configuration
-- [] Setup test suit for network applications
-- [] Use preferred Package manager 📦
-- [] Setup project directory
-- [] Ships with nodemon
+- [ ] Setup Express/JavaScript application
+- [ ] Setup Express/Typescript application
+- [ ] Extend CLI configuration
+- [ ] Setup test suit for network applications
+- [ ] Use preferred Package manager 📦
+- [ ] Setup project directory
+- [ ] Ships with nodemon
 
 ## Demo
 
